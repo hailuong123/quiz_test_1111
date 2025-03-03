@@ -1,0 +1,6 @@
+{
+  "appTitle": "US Citizenship Friend",
+  "appDescription": "Your friendly companion for practicing the US citizenship test.",
+  "@appTitle": {"type": "text"},
+  "@appDescription": {"type": "text"}
+}

@@ -1,0 +1,6 @@
+{
+  "appTitle": "Bạn Đồng Hành Quốc Tịch Mỹ",
+  "appDescription": "Người bạn thân thiện giúp bạn luyện thi quốc tịch Mỹ.",
+  "@appTitle": {"type": "text"},
+  "@appDescription": {"type": "text"}
+}
