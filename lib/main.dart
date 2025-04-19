@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:us_citizenship_friend/widgets/app_bar_home.dart';
+import 'package:us_citizenship_friend/widgets/clip_path_bottom.dart';
+import 'package:us_citizenship_friend/widgets/features_block_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,156 +39,14 @@ class MyApp extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              height: 250, // Tăng chiều cao để kéo dài xuống
-              decoration: BoxDecoration(
-                  color: Color(0xFF222f63)
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/logo.png',
-                      height: 120,
-                      fit: BoxFit.contain,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            ClipPath(
-              clipper: RoundedBottomClipper(),
-              child: Container(
-                height: 50, // Chiều cao cố định để giữ độ bo tròn
-                decoration: BoxDecoration(
-                  color: Color(0xFF222f63)
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                color: Colors.white,
-                child: Center (
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                    child: GridView.count(
-                      // shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      crossAxisCount: 2, // Lưới 2x2
-                      crossAxisSpacing: 16.0, // Khoảng cách ngang
-                      mainAxisSpacing: 16.0, // Khoảng cách dọc,
-                      children: [
-                        Container(
-                          height: 150, // Chiều cao block
-                          width: 150, // Chiều rộng block
-                          color: Colors.blue, // Màu nền
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.home, size: 50, color: Colors.white), // Icon ở trên
-                              SizedBox(height: 10), // Khoảng cách giữa icon và text
-                              Text('Home', style: TextStyle(color: Colors.white, fontSize: 18)), // Text ở dưới
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 150,
-                          width: 150,
-                          color: Colors.green,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.person, size: 50, color: Colors.white),
-                              SizedBox(height: 10),
-                              Text('Profile', style: TextStyle(color: Colors.white, fontSize: 18)),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 150,
-                          width: 150,
-                          color: Colors.red,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.settings, size: 50, color: Colors.white),
-                              SizedBox(height: 10),
-                              Text('Settings', style: TextStyle(color: Colors.white, fontSize: 18)),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 150,
-                          width: 150,
-                          color: Colors.yellow,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.info, size: 50, color: Colors.white),
-                              SizedBox(height: 10),
-                              Text('Info', style: TextStyle(color: Colors.white, fontSize: 18)),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                )
-              )
-            )
+            AppBarHome(),
+            ClipPathBottom(),
+            FeaturesBlockHome()
           ]
-          /*leadingWidth: 200,
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0), // Optional padding
-            child: Image.asset(
-              'assets/images/LOGO.png', // Replace with your logo path
-              height: 80,
-              width: 50,
-              fit: BoxFit.contain
-            )
-          ),
-          backgroundColor: Colors.blue,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(100),
-            ),
-          ),
-          elevation: 0,
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(50), // Thêm chiều cao phía dưới
-            child: Container(
-              height: 10, // Không gian kéo dài xuống
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(100), // Bo tròn ở đáy
-                ),
-              ),
-            ),
-          )
-        ),*/
         )
       )
     );
   }
-}
-
-
-// Custom Clipper để tạo hình vòng tròn ở đáy
-class RoundedBottomClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final Path path = Path();
-    path.lineTo(0, size.height - 50); // Điểm bắt đầu ở góc trái dưới
-    path.quadraticBezierTo(size.width / 2, size.height, size.width, size.height - 50); // Tạo đường cong hình bán nguyệt
-    path.lineTo(size.width, 0); // Đóng path về góc phải trên
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
 class MyHomePage extends StatefulWidget {
