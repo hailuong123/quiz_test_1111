@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:us_citizenship_friend/models/QuestionsModel.dart';
 
 class PracticeTestPage extends StatelessWidget {
   const PracticeTestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final questionsModel = Provider.of<QuestionsModel>(context);
+    questionsModel.generateQuestion();
+    
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -66,7 +73,7 @@ class PracticeTestPage extends StatelessWidget {
               ),
 
               Text(
-                'Question 1',
+                questionsModel.questionsCurrent,
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
 
