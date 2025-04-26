@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:us_citizenship_friend/models/QuestionsModel.dart';
+import 'package:us_citizenship_friend/models/questions_model.dart';
 
 class PracticeTestPage extends StatelessWidget {
   const PracticeTestPage({super.key});
@@ -9,9 +9,8 @@ class PracticeTestPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final questionsModel = Provider.of<QuestionsModel>(context);
-    questionsModel.generateQuestion();
+    int currentQuestionIndex = questionsModel.currentQuestionIndexValue;
     
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -36,7 +35,7 @@ class PracticeTestPage extends StatelessWidget {
                             Icon(Icons.book, color: Colors.black, size: 13),
                             SizedBox(width: 5),
                             Text(
-                              '15/100 Questions',
+                              '${currentQuestionIndex + 1}/${questionsModel.questionsCurrent.length} Questions',
                               style: TextStyle(fontSize: 13, color: Colors.black),
                             )
                           ],
@@ -54,7 +53,7 @@ class PracticeTestPage extends StatelessWidget {
                       ),
                       child: LayoutBuilder(
                         builder: (BuildContext context, BoxConstraints constraints) {
-                          double progressWidth = constraints.maxWidth * 15 / 100; // 80% chiều rộng
+                          double progressWidth = constraints.maxWidth * (currentQuestionIndex + 1) / questionsModel.questionsCurrent.length; // 80% chiều rộng
                           return Align(
                             alignment: Alignment.centerLeft,
                             child: Container(
@@ -73,7 +72,7 @@ class PracticeTestPage extends StatelessWidget {
               ),
 
               Text(
-                questionsModel.questionsCurrent,
+                'Question ${currentQuestionIndex + 1}',
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
 
@@ -93,7 +92,7 @@ class PracticeTestPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'What is the capital of the United States?',
+                      questionsModel.questionsCurrent[currentQuestionIndex]['question'] ?? 'No question',
                       style: TextStyle(fontSize: 20, color: Colors.black),
                     )
                   ],
@@ -115,7 +114,7 @@ class PracticeTestPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start, // Căn trái nội dung
                   children: [
                     Text(
-                      'Washington, D.C.',
+                      questionsModel.questionsCurrent[currentQuestionIndex]['answer_custom'] ?? 'No Answer',
                       style: TextStyle(fontSize: 20, color: Colors.black),
                     )
                   ],
@@ -135,7 +134,7 @@ class PracticeTestPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start, // Căn trái nội dung
                   children: [
                     Text(
-                      "Washington, DC, the U.S. capital, is a compact city on the Potomac River, bordering the states of Maryland and Virginia. It’s defined by imposing neoclassical monuments and buildings – including the iconic ones that house the federal government’s 3 branches: the Capitol, White House and Supreme Court. It's also home to iconic museums and performing-arts venues such as the Kennedy Center.",
+                      questionsModel.questionsCurrent[currentQuestionIndex]['detail'] ?? 'No detail',
                       style: TextStyle(fontSize: 15, fontStyle: FontStyle.italic, color: Colors.black),
                     )
                   ],
@@ -152,28 +151,41 @@ class PracticeTestPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Icon(Icons.chevron_left, size: 25, color: Colors.white),
-                  SizedBox(width: 2),
-                  Text(
-                    'Previous',
-                    style: TextStyle(color: Colors.white, fontSize: 18), // Biểu tượng mũi tên quay lại
-                  )
-                ],
-              ),
-              SizedBox(width: 20),
-              Row(
-                children: [
-                  Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white, fontSize: 18), // Biểu tượng mũi tên quay lại
+              if (questionsModel.currentQuestionIndex > 0) 
+                GestureDetector(
+                  onTap: () {
+                    questionsModel.changeQuestion('prev');
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.chevron_left, size: 25, color: Colors.white),
+                      SizedBox(width: 2),
+                      Text(
+                        'Previous',
+                        style: TextStyle(color: Colors.white, fontSize: 18), // Biểu tượng mũi tên quay lại
+                      )
+                    ],
                   ),
-                  SizedBox(width: 2),
-                  Icon(Icons.chevron_right, size: 25, color: Colors.white),
-                ],
-              ),
+                ),
               
+              SizedBox(width: 20),
+
+              if (questionsModel.currentQuestionIndex < questionsModel.questionsCurrent.length - 1)
+                GestureDetector(
+                  onTap: () {
+                    questionsModel.changeQuestion('next');
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        'Next',
+                        style: TextStyle(color: Colors.white, fontSize: 18), // Biểu tượng mũi tên quay lại
+                      ),
+                      SizedBox(width: 2),
+                      Icon(Icons.chevron_right, size: 25, color: Colors.white),
+                    ],
+                  ),
+                )
             ],
           ),
         ),

@@ -133,7 +133,7 @@ class FeaturesBlockHome extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      '100 Yes/No Questions',
+                      'Yes/No Questions',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
