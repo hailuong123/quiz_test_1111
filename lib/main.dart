@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:us_citizenship_friend/models/QuestionsModel.dart';
+import 'package:us_citizenship_friend/models/questions_model.dart';
 import 'package:us_citizenship_friend/widgets/app_bar_home.dart';
 import 'package:us_citizenship_friend/widgets/clip_path_bottom.dart';
 import 'package:us_citizenship_friend/widgets/features_block_home.dart';

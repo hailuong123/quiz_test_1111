@@ -49,14 +49,19 @@ class QuestionsModel with ChangeNotifier {
   //   };
   // }
 
+  void init() {
+    currentQuestionIndex = 0;
+    _questionsCurrent = _questionsList['PrinciplesOfAmericanDemocracy'];
+  }
+
   void changeQuestion(String nextPrev) {
-    if (nextPrev == 'next') {
-      currentQuestionIndex++;
-    } else {
-      currentQuestionIndex--;
-    }
-    debugPrint("Current Question Index: $currentQuestionIndex");
+    nextPrev == 'next' ? currentQuestionIndex++ : currentQuestionIndex--;
     notifyListeners();
+  }
+
+  void closeQuiz() {
+    currentQuestionIndex = 0;
+    _questionsCurrent = [];
   }
 
   void generateQuestion() {
@@ -66,9 +71,9 @@ class QuestionsModel with ChangeNotifier {
     // } else {
     //   _questionsCurrent = _questionsList['PrinciplesOfAmericanDemocracy'][currentQuestionIndex];
     // }
-    currentQuestionIndex = 0;
     _questionsCurrent = _questionsList['PrinciplesOfAmericanDemocracy'];
 
     notifyListeners();
   }
 }
+
