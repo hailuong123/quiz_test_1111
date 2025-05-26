@@ -1,0 +1,38 @@
+{
+  "PrinciplesOfAmericanDemocracy": [
+    {
+      "id": "PAD01",
+      "question": "What is the supreme law of the land?",
+      "answer": "the Constitution",
+      "answer_custom": "the Constitution",
+      "detail": "The Constitution is the supreme law of the land. It establishes the framework for the government and protects the rights of citizens."
+    },
+    {
+      "id": "PAD02",
+      "question": "What does the Constitution do?",
+      "answer": [
+        "sets up the government",
+        "defines the government",
+        "protects basic rights of Americans"
+      ],
+      "answer_custom": "sets up the government",
+      "detail": "The Constitution sets up the government, defines its powers, and protects the basic rights of Americans."
+    },
+    {
+      "id": "PAD03",
+      "question": "The idea of self-government is in the first three words of the Constitution. What are these words?",
+      "answer": "We the People",
+      "answer_custom": "We the People",
+      "detail": "The first three words of the Constitution are 'We the People'. This phrase emphasizes that the government derives its power from the people."
+    }
+  ],
+  "SystemOfGovernment": [
+    {
+      "id": "SOG01",
+      "question": "Name one branch or part of the government.",
+      "answer": ["Congress", "legislative", "President", "executive", "the courts", "judicial"],
+      "answer_custom": "Congress",
+      "detail": "The U.S. government has three branches: legislative (Congress), executive (President), and judicial (the courts)."
+    }
+  ]
+}
